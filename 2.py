@@ -13,19 +13,14 @@ def norm(p, x):
 
 def main():
 
-    content = sys.stdin.read()
-    temp = []
+    content = raw_input()
+    p = float(content)
 
-    for i in xrange(len(content)):
-        if content[i] != '\n':
-            temp.append(content[i])
-        else:
-            break
+    content = raw_input()
+    content = content.split()
 
-    p = float(''.join(temp))
-    temp = content[i+1:].split()
     vector = []
-    for item in temp:
+    for item in content:
         vector.append(float(item))
 
     print norm(p, vector)
