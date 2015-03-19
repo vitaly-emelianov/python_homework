@@ -1,6 +1,26 @@
 import sys
 
 
+def read_input():
+
+    content = sys.stdin
+
+    max_length = 0
+    lines = []
+
+    got_max_length = False
+    for line in content:
+        if(not got_max_length):
+            max_length = int(line)
+            got_max_length = True
+        else:
+            lines.append(line)
+
+    text = '\n'.join(lines)
+
+    return (max_length, text)
+
+
 def fit_width(max_length, text):
 
     lines = text.split('\n')
@@ -42,18 +62,7 @@ def fit_width(max_length, text):
 
 def main():
 
-    content = sys.stdin.read()
-    temp = []
-
-    for i in xrange(len(content)):
-        if content[i] != '\n':
-            temp.append(content[i])
-        else:
-            break
-
-    max_length = int(''.join(temp))
-    text = content[i+1:]
-
+    (max_length, text) = read_input()
     sys.stdout.write(fit_width(max_length, text))
 
 main()
