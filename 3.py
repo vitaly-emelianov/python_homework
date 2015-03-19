@@ -1,6 +1,24 @@
 import sys
 
 
+def comparer(first_item, second_item):
+    if first_item[1] == second_item[1]:
+        return cmp(first_item[0], second_item[0])
+    else:
+        return -cmp(first_item[1], second_item[1])
+
+
+def print_table(letter_counts):
+    if not letter_counts:
+        print '\n',
+    else:
+        result = []
+        for letter, count in sorted(letter_counts.items(), cmp=comparer):
+            result.append(': '.join([letter, str(count)]))
+
+        print '\n'.join(result)
+
+
 def letter_counter(text):
 
     letter_counts = {}
@@ -13,15 +31,7 @@ def letter_counter(text):
             else:
                 letter_counts[letter] += 1
 
-    if not letter_counts:
-        print '\n',
-    else:
-        result = []
-        letter_counts_alphabetical = sorted(letter_counts.items(), key=lambda x: x[0])
-        for letter, count in sorted(letter_counts_alphabetical, key=lambda x: x[1], reverse=True):
-            result.append(': '.join([letter, str(count)]))
-
-        print '\n'.join(result)
+    print_table(letter_counts)
 
 
 def main():
