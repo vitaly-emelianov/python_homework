@@ -1,0 +1,2 @@
+generate --depth 1 --size 12
+Hello, World!
